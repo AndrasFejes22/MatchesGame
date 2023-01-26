@@ -3,6 +3,10 @@ package matches;
 import java.util.Scanner;
 import java.util.StringJoiner;
 
+/**
+ * TODO: imlement "real" AI
+ */
+
 public class MatchesGame {
 
     public static final int MAX_TAKEN_MATCH = 3;
