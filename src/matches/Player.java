@@ -5,5 +5,5 @@ public interface Player {
 
     String getName();
 
-    int chooseMatchesToPick(int maxPicks, String echoString, int previousPick); //3.: int humanPick most
+    int chooseMatchesToPick(GameContext context); //összefoglaltuk az átadandó paramétereket egy Objektumba
 }
