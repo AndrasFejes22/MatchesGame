@@ -16,10 +16,10 @@ public class MatchesGame {
         //int numberOfMatches = 13; // a 13 az 4 + 4 + 4 + 1 azaz lehet azt csináli hogy az ember által választot picket mindig kiegészítjük 4re, így neki a végén 1 marad = "buta" AI
 
         try (Scanner input = new Scanner(System.in)){
-            System.out.print("Mi a játékos neve?");
+            System.out.print("Mi a játékos neve? ");
             String playerName = input.nextLine();
 
-            System.out.print("Mennyi gyufával játsszunk?");
+            System.out.print("Mennyi gyufával játsszunk? ");
             int numberOfMatches = Integer.parseInt(input.nextLine()); //TODO validation
             Player[] players = new Player[]{new HumanPlayer(playerName, input), new MachinePlayer()};
             GameContext context = new GameContext(numberOfMatches);

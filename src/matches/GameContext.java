@@ -44,7 +44,7 @@ public class GameContext {
 
     public String getEcho(String name){
         String possiblePicks = calculatePossiblePicks(getMaxPick());
-        return String.format("%s: Mennyit szeretnél elvenni? %s",name, possiblePicks);
+        return String.format("%s: Mennyit szeretnél elvenni? %s ",name, possiblePicks);
     }
 
     public boolean isNextRoundPossible(){
