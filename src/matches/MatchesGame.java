@@ -4,7 +4,9 @@ import java.util.Scanner;
 import java.util.StringJoiner;
 
 /**
- * TODO: imlement "real" AI
+ * TODO: 1.: imlement "real" AI
+ * 2.: validations
+ * 3.: Test cases?
  */
 
 public class MatchesGame {

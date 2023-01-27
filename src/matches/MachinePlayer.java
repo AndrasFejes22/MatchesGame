@@ -17,7 +17,7 @@ public class MachinePlayer implements Player{
         int pick = 0;
         if((context.getNumberOfMatches() + context.getPreviousPick() - 1) % 4 == 0){ //a context.getPreviousPick()-t az ember húzta
             //Winning strategy:
-            System.out.println("Nyerõ");
+            System.out.println("AI strategy: winning");
             pick = 4 - context.getPreviousPick();
         } else {
             //Aim for winning strategy:
@@ -25,9 +25,9 @@ public class MachinePlayer implements Player{
             if(pick == 0){
                 //No strategy:
                 pick = random.nextInt(context.getMaxPick()) + 1;
-                System.out.println("Random");
+                System.out.println("AI strategy: Random");
             } else {
-                System.out.println("terelõ");
+                System.out.println("AI strategy: aim for winning strategy");
             }
         }
 
