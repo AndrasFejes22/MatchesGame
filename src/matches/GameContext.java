@@ -58,6 +58,10 @@ public class GameContext {
         round++;
     }
 
+    public int getRound() {
+        return round;
+    }
+
     private String calculatePossiblePicks(int maxPicks) {
         StringJoiner joiner = new StringJoiner(", ", "[", "]");
         for (int i = 1; i <= maxPicks; i++) {
