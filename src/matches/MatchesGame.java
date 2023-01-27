@@ -13,12 +13,16 @@ public class MatchesGame {
 
     public void play(){
         System.out.println("Gyufás játék");
-        int numberOfMatches = 13;
+        //int numberOfMatches = 13; // a 13 az 4 + 4 + 4 + 1 azaz lehet azt csináli hogy az ember által választot picket mindig kiegészítjük 4re, így neki a végén 1 marad
         int round = 0;
         try (Scanner input = new Scanner(System.in)){
             System.out.print("Mi a játékos neve?");
             String playerName = input.nextLine();
+
+            System.out.print("Mennyi gyufával játsszunk?");
+            int numberOfMatches = Integer.parseInt(input.nextLine()); //TODO validation
             Player[] players = new Player[]{new HumanPlayer(playerName, input), new MachinePlayer()};
+            int playerPick = 0;
 
             while (numberOfMatches > 0){
                 int maxPicks = Math.min(MAX_TAKEN_MATCH, numberOfMatches); // ez max 3 amig 3-nál több gyufa van lenn lényege hogy figyeli a maradék gyufát és ha ez <= 3 akkor beállítja
@@ -33,7 +37,7 @@ public class MatchesGame {
                        
                         """, round + 1, numberOfMatches);
                 String echoString = String.format("%s: Mennyit szeretnél elvenni? %s",name, possiblePicks);
-                int playerPick = currentPlayer.chooseMatchesToPick(maxPicks,echoString);
+                playerPick = currentPlayer.chooseMatchesToPick(maxPicks,echoString, playerPick);
                 //round update:
                 numberOfMatches -= playerPick;
                 round++;

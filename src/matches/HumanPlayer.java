@@ -19,7 +19,7 @@ public class HumanPlayer implements Player{
     }
 
     @Override
-    public int chooseMatchesToPick(int maxPicks, String echoString) { //validálni kell
+    public int chooseMatchesToPick(int maxPicks, String echoString, int previousPick) { //validálni kell
        int userPick = 0; // a do-while miatt muszáj inicializálni
        do {
            try {
