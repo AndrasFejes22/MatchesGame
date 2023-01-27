@@ -13,7 +13,7 @@ public class MatchesGame {
 
     public void play(){
         System.out.println("Gyufás játék");
-        //int numberOfMatches = 13; // a 13 az 4 + 4 + 4 + 1 azaz lehet azt csináli hogy az ember által választot picket mindig kiegészítjük 4re, így neki a végén 1 marad
+        //int numberOfMatches = 13; // a 13 az 4 + 4 + 4 + 1 azaz lehet azt csináli hogy az ember által választot picket mindig kiegészítjük 4re, így neki a végén 1 marad = "buta" AI
         int round = 0;
         try (Scanner input = new Scanner(System.in)){
             System.out.print("Mi a játékos neve?");
@@ -22,25 +22,23 @@ public class MatchesGame {
             System.out.print("Mennyi gyufával játsszunk?");
             int numberOfMatches = Integer.parseInt(input.nextLine()); //TODO validation
             Player[] players = new Player[]{new HumanPlayer(playerName, input), new MachinePlayer()};
-            int playerPick = 0;
+            GameContext context = new GameContext(numberOfMatches);
 
-            while (numberOfMatches > 0){
-                int maxPicks = Math.min(3, numberOfMatches); // ez max 3 amig 3-nál több gyufa van lenn lényege hogy figyeli a maradék gyufát és ha ez <= 3 akkor beállítja
-                String possiblePicks = calculatePossiblePicks(maxPicks); //ez csak egy segéd: legyártja a [1, 2, 3] , [1, 2], vagy [1] Stringeket így szépen
+
+            while (context.isNextRoundPossible()){
+
                 Player currentPlayer = players[round % players.length]; // bármilyen szám 2-vel való maradékos osztása az 0, vagy 1 váltakozva*
                 // *ITT váltakozik minden körben a Player: [0] = human , [1] = AI
-                // *bármennyi playerre jó, nem tud túlindexelõdni se
-                String name = currentPlayer.getName();
+
                 System.out.printf("""
                         %d. kör
                         Az asztalon van %d gyufa
                        
                         """, round + 1, numberOfMatches);
-                String echoString = String.format("%s: Mennyit szeretnél elvenni? %s",name, possiblePicks);
-                playerPick = currentPlayer.chooseMatchesToPick(maxPicks,echoString, playerPick);
+
+                int playerPick = currentPlayer.chooseMatchesToPick(context);
                 //round update:
-                numberOfMatches -= playerPick;
-                round++;
+                context.pick(playerPick);
                 System.out.println();
             }
             //winner:
