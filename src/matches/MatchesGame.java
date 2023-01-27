@@ -1,11 +1,11 @@
 package matches;
 
 import java.util.Scanner;
-import java.util.StringJoiner;
+
 
 /**
  * TODO: 1.: imlement "real" AI
- * 2.: validations
+ * 2.: validations human-->negative number: human wins, not number: NumberFormatException, pick < maxPick?
  * 3.: Test cases?
  */
 
@@ -51,6 +51,7 @@ public class MatchesGame {
 
     }
 
+    /*
     private String calculatePossiblePicks(int maxPicks) {
         StringJoiner joiner = new StringJoiner(", ", "[", "]");
         for (int i = 1; i <= maxPicks; i++) {
@@ -58,4 +59,5 @@ public class MatchesGame {
         }
         return joiner.toString();
     }
+    */
 }
