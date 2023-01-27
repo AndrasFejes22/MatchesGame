@@ -9,7 +9,7 @@ import java.util.StringJoiner;
 
 public class MatchesGame {
 
-    public static final int MAX_TAKEN_MATCH = 3;
+    //public static final int MAX_TAKEN_MATCH = 3;
 
     public void play(){
         System.out.println("Gyufás játék");
@@ -25,7 +25,7 @@ public class MatchesGame {
             int playerPick = 0;
 
             while (numberOfMatches > 0){
-                int maxPicks = Math.min(MAX_TAKEN_MATCH, numberOfMatches); // ez max 3 amig 3-nál több gyufa van lenn lényege hogy figyeli a maradék gyufát és ha ez <= 3 akkor beállítja
+                int maxPicks = Math.min(3, numberOfMatches); // ez max 3 amig 3-nál több gyufa van lenn lényege hogy figyeli a maradék gyufát és ha ez <= 3 akkor beállítja
                 String possiblePicks = calculatePossiblePicks(maxPicks); //ez csak egy segéd: legyártja a [1, 2, 3] , [1, 2], vagy [1] Stringeket így szépen
                 Player currentPlayer = players[round % players.length]; // bármilyen szám 2-vel való maradékos osztása az 0, vagy 1 váltakozva*
                 // *ITT váltakozik minden körben a Player: [0] = human , [1] = AI
