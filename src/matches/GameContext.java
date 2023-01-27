@@ -47,6 +47,17 @@ public class GameContext {
         return String.format("%s: Mennyit szeretnél elvenni? %s",name, possiblePicks);
     }
 
+    public boolean isNextRoundPossible(){
+        return numberOfMatches > 0;
+    }
+
+    public void pick(int pick){
+        //validálni kell
+        previousPick = pick;
+        numberOfMatches -= pick;
+        round++;
+    }
+
     private String calculatePossiblePicks(int maxPicks) {
         StringJoiner joiner = new StringJoiner(", ", "[", "]");
         for (int i = 1; i <= maxPicks; i++) {
