@@ -24,17 +24,16 @@ public class MatchesGame {
             Player[] players = new Player[]{new HumanPlayer(playerName, input), new MachinePlayer()};
             GameContext context = new GameContext(numberOfMatches);
 
-
             while (context.isNextRoundPossible()){
-
-                Player currentPlayer = players[context.getRound() % players.length]; // bármilyen szám 2-vel való maradékos osztása az 0, vagy 1 váltakozva*
+                int round = context.getRound(); //**
+                Player currentPlayer = players[round % players.length]; // bármilyen szám 2-vel való maradékos osztása az 0, vagy 1 váltakozva*
                 // *ITT váltakozik minden körben a Player: [0] = human , [1] = AI
 
                 System.out.printf("""
                         %d. kör
                         Az asztalon van %d gyufa
                        
-                        """, context.getRound() + 1, numberOfMatches);
+                        """, round + 1, numberOfMatches);
 
                 int playerPick = currentPlayer.chooseMatchesToPick(context);
                 //round update:
@@ -42,7 +41,8 @@ public class MatchesGame {
                 System.out.println();
             }
             //winner:
-            Player winner = players[context.getRound() % players.length];
+            Player winner = players[context.getRound() % players.length]; //* itt a context.getRound()-ot nem alakítjuk át a **-al jelzett sorban lekérdezett round-á, mert a
+            //context.pick(playerPick); megváltoztatja
             System.out.println("\n" + winner.getName() + " a gyõztes!");
         }
 
