@@ -13,8 +13,25 @@ public class MachinePlayer implements Player{
 
     @Override
     public int chooseMatchesToPick(GameContext context) {
-        int pick = 4 - context.getPreviousPick(); // ez mÃ©g nem okos csak Random 1, vagy 2, vagy 3-at dob.
-        System.out.println(context.getEcho(getName()) + pick); //mellÃ©khatÃ¡s!
+
+        int pick = 0;
+        if((context.getNumberOfMatches() + context.getPreviousPick() - 1) % 4 == 0){ //a context.getPreviousPick()-t az ember húzta
+            //Winning strategy:
+            System.out.println("Nyerõ");
+            pick = 4 - context.getPreviousPick();
+        } else {
+            //Aim for winning strategy:
+            pick = (context.getPreviousPick() - 1) % 4; // gyufa = 4-el osztható szám felé kell terelnie a játékot az AI-nak
+            if(pick == 0){
+                //No strategy:
+                pick = random.nextInt(context.getMaxPick()) + 1;
+                System.out.println("Random");
+            } else {
+                System.out.println("terelõ");
+            }
+        }
+
+        System.out.println(context.getEcho(getName()) + pick); //mellékhatás!
         return pick;
     }
 }

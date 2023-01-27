@@ -33,7 +33,7 @@ public class MatchesGame {
                         %d. kör
                         Az asztalon van %d gyufa
                        
-                        """, round + 1, numberOfMatches);
+                        """, round + 1, context.getNumberOfMatches());
 
                 int playerPick = currentPlayer.chooseMatchesToPick(context);
                 //round update:
