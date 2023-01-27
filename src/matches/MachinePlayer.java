@@ -12,9 +12,9 @@ public class MachinePlayer implements Player{
     }
 
     @Override
-    public int chooseMatchesToPick(int maxPicks, String echoString, int previousPick) {
-        int pick = 4 - previousPick; // ez még nem okos csak Random 1, vagy 2, vagy 3-at dob.
-        System.out.println("AI picked: " + pick); //mellékhatás!
+    public int chooseMatchesToPick(GameContext context) {
+        int pick = 4 - context.getPreviousPick(); // ez még nem okos csak Random 1, vagy 2, vagy 3-at dob.
+        System.out.println(context.getEcho(getName()) + pick); //mellékhatás!
         return pick;
     }
 }
