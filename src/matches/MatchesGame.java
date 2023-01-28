@@ -1,5 +1,6 @@
 package matches;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
@@ -14,15 +15,16 @@ public class MatchesGame {
     //public static final int MAX_TAKEN_MATCH = 3;
 
     public void play(){
-        System.out.println("Gyufás játék");
+        System.out.println("Match game");
         //int numberOfMatches = 13; // a 13 az 4 + 4 + 4 + 1 azaz lehet azt csináli hogy az ember által választot picket mindig kiegészítjük 4re, így neki a végén 1 marad = "buta" AI
 
         try (Scanner input = new Scanner(System.in)){
-            System.out.print("Mi a játékos neve? ");
+            System.out.print("What is the name of the player? ");
             String playerName = input.nextLine();
 
-            System.out.print("Mennyi gyufával játsszunk? ");
-            int numberOfMatches = Integer.parseInt(input.nextLine()); //TODO validation
+            //System.out.print("Mennyi gyufával játsszunk? ");
+            //int numberOfMatches = Integer.parseInt(input.nextLine()); //TODO validation
+            int numberOfMatches = readInt("How many matches should we play the game with? ", input);
             Player[] players = new Player[]{new HumanPlayer(playerName, input), new MachinePlayer()};
             GameContext context = new GameContext(numberOfMatches);
 
@@ -32,8 +34,8 @@ public class MatchesGame {
                 // *ITT váltakozik minden körben a Player: [0] = human , [1] = AI
 
                 System.out.printf("""
-                        %d. kör
-                        Az asztalon van %d gyufa
+                        %d. round
+                        There are %d matches on the table
                        
                         """, round + 1, context.getNumberOfMatches());
 
@@ -49,6 +51,29 @@ public class MatchesGame {
         }
 
 
+    }
+
+    static int readInt(String askMessage, Scanner scanner) {
+        boolean inputCorrect;
+        int number = 0;
+        do {
+            inputCorrect = true;
+            System.out.println(askMessage);
+            try {
+                number = scanner.nextInt();
+                if(number < 1){
+                    System.out.println("\u001b[1;31m" + "You cannot give a number less than 1!" + "\u001b[0m"); //red letters
+                    inputCorrect = false;
+                }
+
+            } catch (InputMismatchException e) {
+                System.out.println("\u001b[1;31m" + "This is not a valid integer!" + "\u001b[0m"); //red letters
+                inputCorrect = false;
+            } finally {
+                scanner.nextLine();
+            }
+        } while (!inputCorrect);
+        return number;
     }
 
     /*
