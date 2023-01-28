@@ -22,8 +22,6 @@ public class MatchesGame {
             System.out.print("What is the name of the player? ");
             String playerName = input.nextLine();
 
-            //System.out.print("Mennyi gyufával játsszunk? ");
-            //int numberOfMatches = Integer.parseInt(input.nextLine()); //TODO validation
             int numberOfMatches = readInt("How many matches should we play the game with? ", input);
             Player[] players = new Player[]{new HumanPlayer(playerName, input), new MachinePlayer()};
             GameContext context = new GameContext(numberOfMatches);
