@@ -27,10 +27,10 @@ public class HumanPlayer implements Player{
                System.out.print(context.getEcho(name)); //String echoString = String.format("%s: Mennyit szeretnél elvenni? %s",name, possiblePicks);
                userPick = Integer.parseInt(scanner.nextLine());
                if(userPick < 1 || userPick > maxPick){
-                   System.out.printf("1 és %d közötti számot kell beírnod!%n", maxPick);
+                   System.out.printf("\u001b[1;31m" + "You must enter a number between 1 and %d!%n" + "\u001b[0m", maxPick);
                }
            } catch (NumberFormatException e) {
-               System.out.println("Nem számot írtál be!");
+               System.out.println("\u001b[1;31m" + "This is not a valid integer!" + "\u001b[0m");
            }
        } while (userPick < 1 || userPick > maxPick);
        return userPick;
